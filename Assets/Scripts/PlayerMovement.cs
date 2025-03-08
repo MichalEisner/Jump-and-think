@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            
         }
 
         /*if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -46,10 +45,12 @@ public class PlayerMovement : MonoBehaviour
         if(IsGrounded())
         {
             Debug.Log("Jsi na zemi");
+            animator.SetBool("IsJumping", false);
         }
         else
         {
             Debug.Log("Nejsi na zemi");
+            animator.SetBool("IsJumping", true);
         }
 
         Flip();
