@@ -5,9 +5,9 @@ using UnityEngine;
 public class Text1 : MonoBehaviour
 {
     public PlayerMovement playerMovement;
-    public KeyFunction keyFunction;
     public GameObject textBox;
     public GameObject continueText;
+    public GameObject KeyFunction;
     public GameObject[] dialogs;
 
     private int dialogIndex = 0;
@@ -26,7 +26,7 @@ public class Text1 : MonoBehaviour
     void Update()
     {
         // Po stisknutí jakékoliv klávesy zobrazí další dialog nebo ukončí dialog
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             ShowNextDialog();
         }
@@ -82,5 +82,6 @@ public class Text1 : MonoBehaviour
         {
             dialog.SetActive(false);
         }
+        Destroy(KeyFunction);
     }
 }
