@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -54,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Flip();
+        
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     private void FixedUpdate() 
