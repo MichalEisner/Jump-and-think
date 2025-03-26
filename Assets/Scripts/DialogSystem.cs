@@ -36,13 +36,35 @@ public class Text1 : MonoBehaviour
     public void StartDialog()
     {
         dialogIndex = 0;  // Reset indexu, aby se dialog vždy spustil od začátku
-        playerMovement.enabled = false;  
+        playerMovement.enabled = false;
         textBox.SetActive(true);
         continueText.SetActive(true);
         ShowNextDialog();
     }
 
-    void ShowNextDialog()
+    // Metoda pro spuštění konkrétního dialogu podle názvu
+    public void ShowSingleDialog(string dialogName)
+    {
+        dialogIndex = 0;  // Reset indexu pro konkrétní dialog
+        playerMovement.enabled = false;
+        textBox.SetActive(true);
+        continueText.SetActive(true);
+
+        // Skryje všechny dialogy a zobrazí pouze ten, který odpovídá názvu
+        foreach (GameObject dialog in dialogs)
+        {
+            dialog.SetActive(false);
+            if (dialog.name == dialogName)
+            {
+                dialog.SetActive(true);
+                Debug.Log("Zobrazen dialog: " + dialogName);
+                break;
+            }
+        }
+        EndDialog();
+    }
+
+    public void ShowNextDialog()
     {
         // Pokud je dialogIndex mimo rozsah, ukončí dialog
         if (dialogIndex >= dialogs.Length)
@@ -71,7 +93,7 @@ public class Text1 : MonoBehaviour
     }
 
     // Funkce pro ukončení dialogu a obnovení pohybu hráče
-    void EndDialog()
+    public void EndDialog()
     {
         playerMovement.enabled = true;
         textBox.SetActive(false);
