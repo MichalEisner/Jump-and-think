@@ -24,6 +24,8 @@ public class QuestionSystem : MonoBehaviour
         wrongChoice2.SetActive(true);
         wrongChoice3.SetActive(true);
         continueText.SetActive(false);
+        dialogSystem.isEnabled = false;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
@@ -44,7 +46,9 @@ public class QuestionSystem : MonoBehaviour
         wrongChoice2.SetActive(false);
         wrongChoice3.SetActive(false);
         continueText.SetActive(true);
+        Cursor.visible = false;
 
+        dialogSystem.isEnabled = true;
         dialogSystem.ShowNextDialog();
         endSystem.end = 1;
     }
@@ -61,7 +65,9 @@ public class QuestionSystem : MonoBehaviour
         wrongChoice2.SetActive(false);
         wrongChoice3.SetActive(false);
         continueText.SetActive(true);
+        Cursor.visible = false;
 
+        dialogSystem.isEnabled = true;
         dialogSystem.ShowNextDialog();
         dialogSystem.ShowNextDialog();
     }

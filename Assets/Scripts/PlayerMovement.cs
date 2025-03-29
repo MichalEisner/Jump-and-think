@@ -12,9 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
     public float gravity;
     public float gravityInJump;
-    public bool isDead = false;
-    public bool isWin = false;
-    public bool isESCMenu = false;
     public Animator animator;
 
     [SerializeField] public Rigidbody2D rb;
@@ -81,14 +78,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
-            if (isDead == false && isWin == false && isESCMenu == false)
-            {
-                isFacingRight = !isFacingRight;
-                Vector3 localScale = transform.localScale;
-                localScale.x *= -1f;
-                transform.localScale = localScale;
-            }
-
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
     }
 }

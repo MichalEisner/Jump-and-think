@@ -11,6 +11,7 @@ public class Text1 : MonoBehaviour
     public GameObject[] dialogs;
 
     private int dialogIndex = 0;
+    public bool isEnabled = true;
 
     void Start()
     {
@@ -25,11 +26,14 @@ public class Text1 : MonoBehaviour
 
     void Update()
     {
-        // Po stisknutí jakékoliv klávesy zobrazí další dialog nebo ukončí dialog
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (isEnabled)
         {
-            ShowNextDialog();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ShowNextDialog();
+            }
         }
+        // Po stisknutí jakékoliv klávesy zobrazí další dialog nebo ukončí dialog
     }
 
     // Metoda pro spuštění dialogu, volaná z jiného skriptu
@@ -40,28 +44,6 @@ public class Text1 : MonoBehaviour
         textBox.SetActive(true);
         continueText.SetActive(true);
         ShowNextDialog();
-    }
-
-    // Metoda pro spuštění konkrétního dialogu podle názvu
-    public void ShowSingleDialog(string dialogName)
-    {
-        dialogIndex = 0;  // Reset indexu pro konkrétní dialog
-        playerMovement.enabled = false;
-        textBox.SetActive(true);
-        continueText.SetActive(true);
-
-        // Skryje všechny dialogy a zobrazí pouze ten, který odpovídá názvu
-        foreach (GameObject dialog in dialogs)
-        {
-            dialog.SetActive(false);
-            if (dialog.name == dialogName)
-            {
-                dialog.SetActive(true);
-                Debug.Log("Zobrazen dialog: " + dialogName);
-                break;
-            }
-        }
-        EndDialog();
     }
 
     public void ShowNextDialog()

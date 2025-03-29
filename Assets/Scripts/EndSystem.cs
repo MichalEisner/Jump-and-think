@@ -5,6 +5,7 @@ using UnityEngine;
 public class EndSystem : MonoBehaviour
 {
     public Text1 dialogSystem;
+    public GameObject objectToAppear;
 
     public int end = 0;
 
@@ -21,8 +22,9 @@ public class EndSystem : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                dialogSystem.EndDialog();
-                Debug.Log("End System - EndDialog()");
+                dialogSystem.ShowNextDialog();
+                Debug.Log("End System - ShowNextDialog()");
+                objectToAppear.SetActive(!objectToAppear.activeInHierarchy);
             }
         }
     }
